@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let gravity = 0.9
 	let gameover = false
 	let dinopy = 0
+	let obstaclesJumped = 0 // Variável para contar quantos obstáculos o dinossauro pulou
   
 	// Data Entry
 	document.addEventListener('keyup', jumpcontrol)
@@ -78,8 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		obstacle.style.left = obstaclepx + 'px'
 	  }, 30)
   
-	  if (!gameover) setTimeout(creatingObstacle, randomTime)
+	  // Incrementar a contagem de obstáculos pulados quando o obstáculo passar
+	  if (!gameover) {
+		obstaclesJumped++
+		setTimeout(creatingObstacle, randomTime)
+	  }
 	}
   
 	creatingObstacle()
+  
+	// Função para exibir o número de obstáculos pulados
+	function displayObstaclesJumped() {
+	  console.log('Obstacles jumped:', obstaclesJumped)
+	}
+  
+	// Chamar a função de exibição quando necessário
+	// Por exemplo, após um certo intervalo de tempo ou quando o jogo acabar
   })
+  
