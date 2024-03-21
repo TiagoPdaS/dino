@@ -5,8 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const grid = document.querySelector('.grid')
 	const body = document.querySelector('body')
 	const alert = document.getElementById('alert')
-
-
+	
 	let jumping = false
 	let gravity = 0.9
 	let gameover = false
@@ -14,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Data Entry
 	document.addEventListener('keyup', jumpcontrol)
+
+	//mobile jump
+	body.addEventListener('touchstart', jumpcontrol)
+	function jumpcontrol() {
+		if (!jumping) {
+			jumping = true;
+			jump();
+		}
+	}
 
 	// Jump control
 	function jumpcontrol(e){
