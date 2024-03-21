@@ -13,12 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     let obstacleInterval;
 
-    // Data Entry
+    // Eventos de entrada
     document.addEventListener('keyup', jumpcontrol);
+    document.addEventListener('touchend', jumpcontrol); // Adicionando evento de toque
 
-    // Jump control
+    // Controle de salto
     function jumpcontrol(e) {
-        if (e.keyCode == 32) {
+        if (e.keyCode == 32 || e.type === 'touchend') {
             if (!jumping && !gameover) {
                 jumping = true;
                 jump();
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function jump() {
         let count = 0;
         let timerId = setInterval(function () {
-            // caindo
+            // Caindo
             if (count == 15) {
                 clearInterval(timerId);
                 let downTimerId = setInterval(function () {
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     dino.style.bottom = dinopy + 'px';
                 }, 20);
             }
-            // Jump Climb
+            // Subindo
             dinopy += 30;
             count++;
             dinopy = dinopy * gravity;
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         obstacle.style.left = obstaclepx + 'px';
 
         obstacleInterval = setInterval(function () {
-            // Collision with the player
+            // Colisão com o jogador
             if (obstaclepx > 0 && obstaclepx < 60 && dinopy < 60) {
                 clearInterval(obstacleInterval);
                 alert.innerHTML = 'Game Over!';
